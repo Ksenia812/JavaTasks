@@ -13,8 +13,8 @@ public class SumBetweenMinAndMax {
      */
     public static void main(String[] args) {
 
-        int array[] = {1, 12, 16, 41, 35, 58, 8};
-        int sum = getSumBetweenMinAndMax(array);
+        int marks [] = {4,4,3,6,1,3,8};
+        int sum = getSumBetweenMinAndMax(marks);
         System.out.println(sum);
 
     }
@@ -22,19 +22,24 @@ public class SumBetweenMinAndMax {
     /**
      * Gets sum between min and max.
      *
-     * @param array the array
+     * @param marks the array
      * @return the sum between min and max
      */
-    public static int getSumBetweenMinAndMax(int[] array) {
+    public static int getSumBetweenMinAndMax(int[] marks) {
         int minIndex = 0;
         int maxIndex = 0;
-        int result = 0;
-        for (int i = 1; i < array.length; i++) {
-            minIndex = array[i] < array[minIndex] ? i : minIndex;
-            maxIndex = array[i] > array[maxIndex] ? i : maxIndex;
+        int sumNumber = 0;
+        for ( int i = 0 ; i < marks.length ; i++ ) {
+            if ( marks[i] > marks[maxIndex] ) {
+                maxIndex = i;
+            }
+            if ( marks[i] < marks[minIndex] ) {
+                minIndex = i;
+            }
         }
-        for (int i = minIndex > maxIndex ? maxIndex : minIndex; i <= (minIndex < maxIndex ? maxIndex : minIndex); i++)
-            result += array[i];
-        return result;
+        for ( int i = Math.min ( minIndex, maxIndex ) + 1 ; i < Math.max ( minIndex, maxIndex ) ; i++ ) {
+            sumNumber += marks[i];
+        }
+       return sumNumber ;
     }
 }
